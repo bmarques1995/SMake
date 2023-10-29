@@ -13,3 +13,4 @@ option(BUILD_EXECUTABLE "Build the current executable" ON)
 
 add_subdirectory(SMake)
 add_subdirectory(SMakeExec)
+add_subdirectory(SMakeTests)
