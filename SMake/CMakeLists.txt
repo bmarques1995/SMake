@@ -5,7 +5,7 @@ file(GLOB_RECURSE SM_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ".//*.cc")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_PREFIX_PATH})
 
-#find_package(JsonCpp REQUIRED)
+find_package(JsonCpp REQUIRED)
 
 set(LIB_POSTFIX d)
 
@@ -16,7 +16,7 @@ if(BUILD_SHARED_LIBS)
     target_include_directories(${LIB_NAME} PUBLIC "${CMAKE_PREFIX_PATH}/include" $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/SMake> $<INSTALL_INTERFACE:${CMAKE_PREFIX_PATH}/include>)
     target_include_directories(${LIB_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/private")
     target_link_directories(${LIB_NAME} PUBLIC "${CMAKE_PREFIX_PATH}/lib")
-    target_link_libraries(${LIB_NAME} PUBLIC)
+    target_link_libraries(${LIB_NAME} PUBLIC jsoncpp_lib)
     target_compile_definitions(${LIB_NAME} PUBLIC SMAKE_DYNAMIC_LINK)
     target_compile_definitions(${LIB_NAME} PRIVATE SMAKE_BUILD_DLL)
     if(WIN32)
@@ -41,7 +41,7 @@ if(BUILD_STATIC_LIBS OR BUILD_EXECUTABLE)
     target_include_directories(${LIB_NAME} PUBLIC "${CMAKE_PREFIX_PATH}/include" $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/SMake> $<INSTALL_INTERFACE:${CMAKE_PREFIX_PATH}/include>)
     target_include_directories(${LIB_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/private")
     target_link_directories(${LIB_NAME} PUBLIC "${CMAKE_PREFIX_PATH}/lib")
-    target_link_libraries(${LIB_NAME} PUBLIC)
+    target_link_libraries(${LIB_NAME} PUBLIC jsoncpp_static)
 
     if(WIN32)
         target_compile_definitions(${LIB_NAME} PUBLIC SMAKE_WINDOWS)
